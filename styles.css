@@ -25,101 +25,8 @@ body {
 }
 
 /* =========================================
-   LINKS
-   ========================================= */
-
-a {
-  color: #e6e6e6;
-  text-decoration: none;
-}
-
-/* Desktop hover behavior */
-@media (min-width: 769px) {
-  a:hover {
-    text-decoration: underline;
-  }
-}
-
-/* Mobile: always show underline so links are obvious */
-@media (max-width: 768px) {
-  a {
-    text-decoration: underline;
-    text-underline-offset: 3px;
-  }
-}
-
-/* =========================================
-   HEADINGS & TEXT
-   ========================================= */
-
-h1, h2, h3, h4, h5, h6 {
-  font-weight: 400;
-  margin: 0 0 1rem 0;
-  line-height: 1.4;
-}
-
-p {
-  margin: 0 0 1.2rem 0;
-}
-
-/* =========================================
-   PRE / ASCII / CODE BLOCKS
-   ========================================= */
-
-pre {
-  max-width: 100%;
-  overflow-x: auto;
-  white-space: pre;
-  font-size: 0.9em;
-  line-height: 1.4;
-  -webkit-overflow-scrolling: touch;
-}
-
-code {
-  font-family: inherit;
-  font-size: 0.9em;
-}
-
-/* =========================================
-   DIVIDERS & LISTS
-   ========================================= */
-
-hr {
-  border: none;
-  border-top: 1px solid #333;
-  margin: 1.5rem 0;
-}
-
-ul, ol {
-  padding-left: 1.2rem;
-  margin: 0 0 1.2rem 0;
-}
-
-/* =========================================
-   MOBILE TYPOGRAPHY (PERFECT — DO NOT TOUCH)
-   ========================================= */
-
-@media (max-width: 768px) {
-  html {
-    font-size: 13px; /* Mobile scale — LOCKED */
-  }
-
-  body {
-    line-height: 1.65;
-  }
-
-  pre, code {
-    font-size: 0.85em;
-  }
-
-  /* REMOVE swipe hint on mobile */
-  .swipe-hint {
-    display: none !important;
-  }
-}
-
-/* =========================================
    DESKTOP CENTERING FIX
+   (targets your <main class="wrap center">)
    ========================================= */
 
 @media (min-width: 769px) {
@@ -128,9 +35,74 @@ ul, ol {
     justify-content: center;
   }
 
-  main, .container, .wrap, .content {
+  main.wrap.center {
     width: 100%;
     max-width: 900px;
+  }
+}
+
+/* =========================================
+   LINKS
+   ========================================= */
+
+a {
+  color: #e6e6e6;
+  text-decoration: none;
+}
+
+/* Desktop hover */
+@media (min-width: 769px) {
+  a:hover {
+    text-decoration: underline;
+  }
+}
+
+/* Mobile: underline links so they look clickable */
+@media (max-width: 768px) {
+  a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+}
+
+/* =========================================
+   PRE / ASCII / TERM BLOCK
+   ========================================= */
+
+pre.term {
+  max-width: 100%;
+  overflow-x: auto;              /* scroll inside, not whole page */
+  white-space: pre;
+  font-size: 0.9em;
+  line-height: 1.4;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Muted text */
+.muted {
+  color: #9a9a9a;
+}
+
+/* =========================================
+   MOBILE TYPOGRAPHY (LOCKED)
+   ========================================= */
+
+@media (max-width: 768px) {
+  html {
+    font-size: 13px; /* Mobile size — PERFECT (do not change) */
+  }
+
+  body {
+    line-height: 1.65;
+  }
+
+  pre.term {
+    font-size: 0.85em;
+  }
+
+  /* REMOVE swipe hint completely on mobile */
+  .swipe-hint {
+    display: none !important;
   }
 }
 
