@@ -75,6 +75,20 @@ button {
   cursor: pointer;
   padding: 0 0.5ch;
 }
+/* ===== Mobile safety fix (do NOT change ASCII layout) ===== */
+@media (max-width: 768px) {
+  body {
+    overflow-x: auto;
+  }
+
+  .term {
+    width: max-content;
+    min-width: 100vw;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
 
 button:hover {
   background: #7CFF7C;
