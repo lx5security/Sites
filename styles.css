@@ -13,41 +13,49 @@ body {
   background: #000;
   color: #fff;
   font-family: "Courier New", Courier, monospace;
-  overflow-x: hidden; /* prevent page sliding */
+  overflow-x: hidden; /* stops page sliding */
 }
 
 /* =========================================
-   LAYOUT
+   LAYOUT (CENTER EVERYTHING)
    ========================================= */
 
 main.wrap {
   display: flex;
-  justify-content: center;
+  justify-content: center;  /* CENTER on desktop + mobile */
   align-items: flex-start;
   width: 100%;
   padding: 2ch 1ch;
 }
 
+/* some pages might use .center on the main wrapper */
+.wrap.center,
 .center {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  width: 100%;
 }
 
 /* =========================================
-   TERMINAL / ASCII
+   TERMINAL / ASCII (CENTER + SAFE SCROLL)
    ========================================= */
 
 .term {
-  width: max-content;
-  min-width: 100%;
-  white-space: pre;
-  overflow-x: auto; /* ONLY place horizontal scroll exists */
-  overflow-y: hidden;
+  display: block;
 
+  /* THIS is what keeps it centered */
+  width: max-content;     /* shrink to ASCII width */
+  max-width: 100%;        /* never exceed screen width */
+  margin: 0 auto;         /* center the whole block */
+
+  /* this allows sideways swipe ONLY inside the terminal */
+  overflow-x: auto;
+  overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
 
-  margin: 0 auto;
+  white-space: pre;
+
   padding-left: 1ch;
   padding-right: 1ch;
 }
@@ -78,22 +86,7 @@ a:active {
 }
 
 /* =========================================
-   MOBILE SAFETY (NO LAYOUT SHIFT)
-   ========================================= */
-
-@media (max-width: 768px) {
-  main.wrap {
-    justify-content: flex-start;
-  }
-
-  .center {
-    justify-content: flex-start;
-    align-items: flex-start;
-  }
-}
-
-/* =========================================
-   HARD REVERT — REMOVE SWIPE COMPLETELY
+   HARD REMOVE SWIPE TEXT (EVERYWHERE)
    ========================================= */
 
 .swipe-hint {
