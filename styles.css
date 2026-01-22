@@ -1,6 +1,7 @@
-/* =========================
-   GLOBAL RESET
-   ========================= */
+/* ===============================
+   GLOBAL RESET / BASE
+   =============================== */
+
 * {
   box-sizing: border-box;
 }
@@ -10,79 +11,71 @@ html, body {
   padding: 0;
   background: #000;
   color: #eaeaea;
-  font-family: monospace;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
 }
 
-/* =========================
-   LINKS — ALWAYS WHITE
-   ========================= */
+/* ===============================
+   LAYOUT
+   =============================== */
+
+.wrap {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+/* ===============================
+   TERMINAL / ASCII
+   =============================== */
+
+.term {
+  white-space: pre;
+  text-align: left;
+  margin: 0 auto;
+  padding: 2ch;
+  max-width: max-content;
+}
+
+/* ===============================
+   TEXT STYLES
+   =============================== */
+
+.muted {
+  opacity: 0.7;
+}
+
+/* ===============================
+   LINKS — FORCE WHITE
+   =============================== */
+
 a,
 a:visited,
 a:hover,
 a:active {
   color: #ffffff;
+  text-decoration: none;
+}
+
+a:hover {
   text-decoration: underline;
 }
 
-/* Optional: subtle hover */
-a:hover {
-  opacity: 0.85;
-}
+/* ===============================
+   MOBILE — SAFE, NO SIDE SCROLL
+   =============================== */
 
-/* =========================
-   LAYOUT
-   ========================= */
-.wrap {
-  display: flex;
-  min-height: 100vh;
-}
-
-/* DESKTOP: center everything */
-.center {
-  justify-content: center;
-  align-items: center;
-}
-
-/* =========================
-   TERMINAL (ASCII SAFE)
-   ========================= */
-.term {
-  white-space: pre;
-}
-
-/* =========================
-   REMOVE SWIPE HINT COMPLETELY
-   ========================= */
-.swipe-hint {
-  display: none !important;
-}
-
-/* =========================
-   MOBILE ONLY FIX
-   ========================= */
 @media (max-width: 768px) {
-
-  /* Lock the PAGE — prevents drifting */
-  html, body {
+  body {
     overflow-x: hidden;
   }
 
-  /* MOBILE: start content from top-left */
-  .center,
-  .wrap.center {
-    justify-content: flex-start !important;
-    align-items: flex-start !important;
-  }
-
-  /* Allow ONLY terminal to scroll horizontally */
   .term {
-    width: 100%;
-    overflow-x: auto;
-    overflow-y: hidden;
-    -webkit-overflow-scrolling: touch;
-
-    padding-left: 1ch;
-    padding-right: 1ch;
-    margin: 0 !important;
+    padding: 1.5ch;
   }
 }
