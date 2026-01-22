@@ -1,77 +1,88 @@
 /* =========================
-   LX5 — FINAL CSS REVERT
-   Goal:
-   - Remove swipe hint
-   - Stop the page from "sliding all over"
-   - Keep ASCII art intact
-   - Desktop stays the same
+   GLOBAL RESET
    ========================= */
-
-/* --- Base reset / safety --- */
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
 html, body {
   margin: 0;
   padding: 0;
   background: #000;
   color: #eaeaea;
+  font-family: monospace;
 }
 
-/* If you already have these in your file, keep your originals.
-   This just avoids layout weirdness. */
+/* =========================
+   LINKS — ALWAYS WHITE
+   ========================= */
+a,
+a:visited,
+a:hover,
+a:active {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+/* Optional: subtle hover */
+a:hover {
+  opacity: 0.85;
+}
+
+/* =========================
+   LAYOUT
+   ========================= */
 .wrap {
   display: flex;
   min-height: 100vh;
 }
 
-/* Your layout uses: <main class="wrap center"> */
+/* DESKTOP: center everything */
 .center {
   justify-content: center;
   align-items: center;
 }
 
-/* The "terminal" (your <pre class="term">) */
+/* =========================
+   TERMINAL (ASCII SAFE)
+   ========================= */
 .term {
-  /* keep terminal feeling stable */
   white-space: pre;
 }
 
-/* ===== IMPORTANT: Remove the swipe hint everywhere ===== */
+/* =========================
+   REMOVE SWIPE HINT COMPLETELY
+   ========================= */
 .swipe-hint {
   display: none !important;
 }
 
 /* =========================
-   MOBILE ONLY FIX (<= 768px)
-   Keep ASCII intact, but prevent page drift:
-   - Lock the PAGE (body) from horizontal sliding
-   - Allow the PRE (terminal) to scroll horizontally
+   MOBILE ONLY FIX
    ========================= */
 @media (max-width: 768px) {
-  /* Lock the whole page from drifting left/right */
+
+  /* Lock the PAGE — prevents drifting */
   html, body {
     overflow-x: hidden;
   }
 
-  /* Anchor layout to the left so it doesn't float weird */
+  /* MOBILE: start content from top-left */
   .center,
   .wrap.center {
     justify-content: flex-start !important;
     align-items: flex-start !important;
   }
 
-  /* Let ONLY the terminal scroll horizontally */
+  /* Allow ONLY terminal to scroll horizontally */
   .term {
     width: 100%;
     overflow-x: auto;
     overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
 
-    /* padding so text isn't glued to the edge */
     padding-left: 1ch;
     padding-right: 1ch;
-
-    /* ensures no weird centering margins */
     margin: 0 !important;
   }
 }
