@@ -78,19 +78,20 @@ button {
 /* ===== Mobile safety fix (do NOT change ASCII layout) ===== */
 @media (max-width: 768px) {
   body {
-    overflow-x: auto;
+    overflow-x: hidden;
   }
 
   .term {
     width: max-content;
     min-width: 100vw;
     overflow-x: auto;
+    overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
+    padding-left: 1ch;
+    padding-right: 1ch;
   }
-}
 
-
-button:hover {
-  background: #7CFF7C;
-  color: #000;
+  .wrap {
+    align-items: flex-start;
+  }
 }
