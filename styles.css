@@ -1,5 +1,5 @@
 /* =========================================
-   LX5 FINAL GLOBAL CSS — CENTERED + LOCKED
+   LX5 FINAL GLOBAL CSS — LOCKED & CENTERED
    ========================================= */
 
 /* Prevent drift / overflow */
@@ -10,7 +10,7 @@ html, body {
   overflow-x: hidden;
 }
 
-/* Base font sizing (DO NOT CHANGE) */
+/* Base font sizing (LOCKED) */
 html {
   font-size: 15px;
   -webkit-text-size-adjust: 100%;
@@ -29,7 +29,6 @@ body {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   line-height: 1.6;
 
-  /* center page vertically + horizontally */
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -43,9 +42,9 @@ body {
 main.wrap.center {
   display: flex;
   flex-direction: column;
-  align-items: center;   /* centers all children */
+  align-items: center;
   justify-content: center;
-  text-align: center;    /* text above/below is centered */
+  text-align: center;
   width: 100%;
 }
 
@@ -54,14 +53,14 @@ main.wrap.center {
    ========================================= */
 
 pre.term {
-  width: max-content;    /* shrink to artwork width */
+  width: max-content;
   max-width: 100%;
-  margin: 0 auto;        /* center the block */
+  margin: 0 auto;
   white-space: pre;
   overflow-x: auto;
   font-size: 0.9em;
   line-height: 1.4;
-  text-align: left;      /* KEEP ASCII PERFECT */
+  text-align: left; /* DO NOT CHANGE — preserves ASCII */
   -webkit-overflow-scrolling: touch;
 }
 
@@ -79,14 +78,12 @@ a {
   text-decoration: none;
 }
 
-/* Desktop hover underline */
 @media (min-width: 769px) {
   a:hover {
     text-decoration: underline;
   }
 }
 
-/* Mobile: always show underline */
 @media (max-width: 768px) {
   a {
     text-decoration: underline;
@@ -95,10 +92,19 @@ a {
 }
 
 /* =========================================
-   SWIPE HINT (MOBILE REMOVED)
+   MOBILE-ONLY TRUE CENTERING FIX
    ========================================= */
 
 @media (max-width: 768px) {
+  pre.term {
+    display: inline-block;
+    width: max-content;
+    max-width: 100%;
+    overflow-x: hidden;
+    transform: scale(0.92);          /* SAFE mobile fit */
+    transform-origin: top center;    /* center-scale */
+  }
+
   .swipe-hint {
     display: none !important;
   }
