@@ -2,98 +2,94 @@
    GLOBAL RESET
    ========================================= */
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
-html,
-body {
+html, body {
   margin: 0;
   padding: 0;
   background: #000;
   color: #fff;
 
-  /* x86re-style system monospace stack */
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco,
-               Consolas, "Liberation Mono", "DejaVu Sans Mono", monospace;
+  /* system-mono stack (x86re vibe) */
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "DejaVu Sans Mono", "Courier New", monospace;
 
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  overflow-x: hidden;
-  font-size: 18px;       /* tuned for x86re-like appearance */
-  line-height: 1.5;       /* tuned for readability */
+  overflow-x: hidden; /* prevent page-level sideways sliding */
+  -webkit-text-size-adjust: 100%;
+  text-rendering: geometricPrecision;
 }
 
 /* =========================================
-   LAYOUT (CENTER EVERYTHING)
+   LAYOUT
    ========================================= */
 
 main.wrap {
   display: flex;
-  justify-content: center;
+  justify-content: center;   /* desktop centered */
   align-items: flex-start;
   width: 100%;
   padding: 2ch 1ch;
 }
 
-.wrap.center,
-.center {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  width: 100%;
-}
-
 /* =========================================
-   TERMINAL / ASCII (CENTER + SAFE SCROLL)
+   TERMINAL / ASCII
    ========================================= */
 
 .term {
   display: block;
 
-  width: max-content;
-  max-width: 100%;
-  margin: 0 auto;
+  /* IMPORTANT: don't use margin:auto centering here (Safari can "open" scrolled) */
+  margin: 0;
 
+  /* keep the ASCII intact */
+  white-space: pre;
+
+  /* allow sideways scroll only inside the terminal */
   overflow-x: auto;
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
 
-  white-space: pre;
+  /* prevents weird "start in the middle" behavior on some mobile browsers */
+  scroll-behavior: auto;
 
+  /* keep spacing */
   padding-left: 1ch;
   padding-right: 1ch;
+
+  /* match font */
+  font-family: inherit;
+
+  /* let desktop centering happen via the wrapper (flex),
+     not via margin:auto which can cause the issue */
+  width: max-content;
+  max-width: 100%;
+}
+
+/* MOBILE: start from the left so it always opens at the beginning */
+@media (max-width: 768px) {
+  main.wrap {
+    justify-content: flex-start; /* left aligned on mobile */
+  }
 }
 
 /* =========================================
    TYPOGRAPHY
    ========================================= */
 
-p,
-span {
-  line-height: 1.5;
-}
-
-.muted {
-  opacity: 0.7;
-}
+p, span { line-height: 1.45; }
+.muted { opacity: 0.7; }
 
 /* =========================================
-   LINKS — FORCE WHITE (NO BLUE/PURPLE)
+   LINKS — FORCE WHITE (NO PURPLE / BLUE)
    ========================================= */
 
-a,
-a:visited,
-a:hover,
-a:active {
+a, a:visited, a:hover, a:active {
   color: #fff;
   text-decoration: underline;
 }
 
 /* =========================================
-   REMOVE SWIPE HINT
+   HARD REMOVE SWIPE TEXT (EVERYWHERE)
    ========================================= */
 
 .swipe-hint {
