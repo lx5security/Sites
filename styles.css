@@ -12,7 +12,15 @@ body {
   padding: 0;
   background: #000;
   color: #fff;
-  font-family: "Courier New", Courier, monospace;
+
+  /* x86re-style system monospace */
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco,
+               Consolas, "Liberation Mono", monospace;
+
+  font-variant-ligatures: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
   overflow-x: hidden; /* stops page sliding */
 }
 
@@ -22,7 +30,7 @@ body {
 
 main.wrap {
   display: flex;
-  justify-content: center;  /* CENTER on desktop + mobile */
+  justify-content: center;   /* CENTER on desktop + mobile */
   align-items: flex-start;
   width: 100%;
   padding: 2ch 1ch;
@@ -44,12 +52,12 @@ main.wrap {
 .term {
   display: block;
 
-  /* THIS is what keeps it centered */
-  width: max-content;     /* shrink to ASCII width */
-  max-width: 100%;        /* never exceed screen width */
-  margin: 0 auto;         /* center the whole block */
+  /* keeps ASCII centered */
+  width: max-content;
+  max-width: 100%;
+  margin: 0 auto;
 
-  /* this allows sideways swipe ONLY inside the terminal */
+  /* horizontal scroll ONLY inside terminal */
   overflow-x: auto;
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
@@ -58,6 +66,8 @@ main.wrap {
 
   padding-left: 1ch;
   padding-right: 1ch;
+
+  font-family: inherit; /* inherit system monospace */
 }
 
 /* =========================================
