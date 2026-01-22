@@ -1,100 +1,104 @@
 /* =========================================
-   GLOBAL RESET
+   LX5 GLOBAL RESET & TYPOGRAPHY FIX
+   Safe to paste as-is
    ========================================= */
 
-* { box-sizing: border-box; }
-
+/* Prevent mobile horizontal drift */
 html, body {
+  width: 100%;
   margin: 0;
   padding: 0;
-  background: #000;
-  color: #fff;
+  overflow-x: hidden;
+}
 
-  /* system-mono stack (x86re vibe) */
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-    "Liberation Mono", "DejaVu Sans Mono", "Courier New", monospace;
-
-  overflow-x: hidden; /* prevent page-level sideways sliding */
+/* Root font sizing (controls ALL pages) */
+html {
+  font-size: 15px; /* Desktop baseline */
   -webkit-text-size-adjust: 100%;
-  text-rendering: geometricPrecision;
 }
 
-/* =========================================
-   LAYOUT
-   ========================================= */
-
-main.wrap {
-  display: flex;
-  justify-content: center;   /* desktop centered */
-  align-items: flex-start;
-  width: 100%;
-  padding: 2ch 1ch;
+/* Global body styling */
+body {
+  background: #000;
+  color: #e6e6e6;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  line-height: 1.6;
 }
 
-/* =========================================
-   TERMINAL / ASCII
-   ========================================= */
+/* Links */
+a {
+  color: #e6e6e6;
+  text-decoration: none;
+}
 
-.term {
-  display: block;
+a:hover {
+  text-decoration: underline;
+}
 
-  /* IMPORTANT: don't use margin:auto centering here (Safari can "open" scrolled) */
-  margin: 0;
+/* Headings (keep terminal feel, not oversized) */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 400;
+  margin: 0 0 1rem 0;
+  line-height: 1.4;
+}
 
-  /* keep the ASCII intact */
-  white-space: pre;
+/* Paragraphs */
+p {
+  margin: 0 0 1.2rem 0;
+}
 
-  /* allow sideways scroll only inside the terminal */
-  overflow-x: auto;
-  overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
-
-  /* prevents weird "start in the middle" behavior on some mobile browsers */
-  scroll-behavior: auto;
-
-  /* keep spacing */
-  padding-left: 1ch;
-  padding-right: 1ch;
-
-  /* match font */
-  font-family: inherit;
-
-  /* let desktop centering happen via the wrapper (flex),
-     not via margin:auto which can cause the issue */
-  width: max-content;
+/* Preformatted / ASCII blocks */
+pre {
   max-width: 100%;
+  overflow-x: auto;
+  white-space: pre;
+  font-size: 0.9em;
+  line-height: 1.4;
+  -webkit-overflow-scrolling: touch;
 }
 
-/* MOBILE: start from the left so it always opens at the beginning */
+/* Code blocks */
+code {
+  font-family: inherit;
+  font-size: 0.9em;
+}
+
+/* Horizontal rules */
+hr {
+  border: none;
+  border-top: 1px solid #333;
+  margin: 1.5rem 0;
+}
+
+/* Lists */
+ul, ol {
+  padding-left: 1.2rem;
+  margin: 0 0 1.2rem 0;
+}
+
+/* =========================================
+   MOBILE OPTIMIZATION
+   ========================================= */
+
 @media (max-width: 768px) {
-  main.wrap {
-    justify-content: flex-start; /* left aligned on mobile */
+  html {
+    font-size: 13px; /* Mobile scale */
+  }
+
+  body {
+    line-height: 1.65;
+  }
+
+  pre, code {
+    font-size: 0.85em;
   }
 }
 
 /* =========================================
-   TYPOGRAPHY
+   SAFETY NET (prevents rogue width elements)
    ========================================= */
 
-p, span { line-height: 1.45; }
-.muted { opacity: 0.7; }
-
-/* =========================================
-   LINKS — FORCE WHITE (NO PURPLE / BLUE)
-   ========================================= */
-
-a, a:visited, a:hover, a:active {
-  color: #fff;
-  text-decoration: underline;
-}
-
-/* =========================================
-   HARD REMOVE SWIPE TEXT (EVERYWHERE)
-   ========================================= */
-
-.swipe-hint {
-  display: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
+* {
+  max-width: 100%;
+  box-sizing: border-box;
 }
