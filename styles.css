@@ -1,8 +1,8 @@
 /* =========================================
-   LX5 GLOBAL RESET & TYPOGRAPHY (LOCKED)
+   LX5 FINAL GLOBAL CSS — CENTERED + LOCKED
    ========================================= */
 
-/* Prevent horizontal drift */
+/* Prevent drift / overflow */
 html, body {
   width: 100%;
   margin: 0;
@@ -10,35 +10,64 @@ html, body {
   overflow-x: hidden;
 }
 
-/* Root font sizing (controls ALL pages) */
+/* Base font sizing (DO NOT CHANGE) */
 html {
-  font-size: 15px; /* Desktop baseline */
+  font-size: 15px;
   -webkit-text-size-adjust: 100%;
 }
 
-/* Global body styling */
+@media (max-width: 768px) {
+  html {
+    font-size: 13px;
+  }
+}
+
+/* Body */
 body {
   background: #000;
   color: #e6e6e6;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   line-height: 1.6;
+
+  /* center page vertically + horizontally */
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* =========================================
-   DESKTOP CENTERING FIX
-   (targets your <main class="wrap center">)
+   MAIN WRAPPER — CENTER EVERYTHING
    ========================================= */
 
-@media (min-width: 769px) {
-  body {
-    display: flex;
-    justify-content: center;
-  }
+main.wrap.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;   /* centers all children */
+  justify-content: center;
+  text-align: center;    /* text above/below is centered */
+  width: 100%;
+}
 
-  main.wrap.center {
-    width: 100%;
-    max-width: 900px;
-  }
+/* =========================================
+   TERMINAL / ASCII BLOCK
+   ========================================= */
+
+pre.term {
+  width: max-content;    /* shrink to artwork width */
+  max-width: 100%;
+  margin: 0 auto;        /* center the block */
+  white-space: pre;
+  overflow-x: auto;
+  font-size: 0.9em;
+  line-height: 1.4;
+  text-align: left;      /* KEEP ASCII PERFECT */
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Muted text */
+.muted {
+  color: #9a9a9a;
 }
 
 /* =========================================
@@ -50,14 +79,14 @@ a {
   text-decoration: none;
 }
 
-/* Desktop hover */
+/* Desktop hover underline */
 @media (min-width: 769px) {
   a:hover {
     text-decoration: underline;
   }
 }
 
-/* Mobile: underline links so they look clickable */
+/* Mobile: always show underline */
 @media (max-width: 768px) {
   a {
     text-decoration: underline;
@@ -66,41 +95,10 @@ a {
 }
 
 /* =========================================
-   PRE / ASCII / TERM BLOCK
-   ========================================= */
-
-pre.term {
-  max-width: 100%;
-  overflow-x: auto;              /* scroll inside, not whole page */
-  white-space: pre;
-  font-size: 0.9em;
-  line-height: 1.4;
-  -webkit-overflow-scrolling: touch;
-}
-
-/* Muted text */
-.muted {
-  color: #9a9a9a;
-}
-
-/* =========================================
-   MOBILE TYPOGRAPHY (LOCKED)
+   SWIPE HINT (MOBILE REMOVED)
    ========================================= */
 
 @media (max-width: 768px) {
-  html {
-    font-size: 13px; /* Mobile size — PERFECT (do not change) */
-  }
-
-  body {
-    line-height: 1.65;
-  }
-
-  pre.term {
-    font-size: 0.85em;
-  }
-
-  /* REMOVE swipe hint completely on mobile */
   .swipe-hint {
     display: none !important;
   }
