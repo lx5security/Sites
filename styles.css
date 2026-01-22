@@ -1,0 +1,82 @@
+/* ===== GLOBAL ===== */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #000;
+  color: #cecece;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+/* ===== CENTERING ===== */
+.wrap {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wrap.top {
+  align-items: flex-start;
+  padding-top: 3rem;
+}
+
+/* ===== TERMINAL ===== */
+.term {
+  white-space: pre;
+  font-size: 15px;
+  line-height: 1.45;
+  max-width: 90ch;
+}
+
+/* ===== LINKS ===== */
+a {
+  color: #dedede;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: #a1a1a1;
+}
+
+/* ===== MUTED TEXT ===== */
+.muted {
+  color: #3a3a3a;
+}
+
+/* ===== PLAYER ===== */
+.player {
+  color: #8aff8a;
+}
+
+.bar {
+  display: inline-block;
+  width: 34ch;
+  height: 1ch;
+  border: 1px solid #7CFF7C;
+  vertical-align: middle;
+}
+
+.bar-fill {
+  display: block;
+  height: 100%;
+  width: 0%;
+  background: #7CFF7C;
+}
+
+button {
+  background: transparent;
+  border: 1px solid #cecece;
+  color: #7CFF7C;
+  font-family: inherit;
+  cursor: pointer;
+  padding: 0 0.5ch;
+}
+
+button:hover {
+  background: #7CFF7C;
+  color: #000;
+}
