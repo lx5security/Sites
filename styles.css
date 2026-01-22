@@ -1,81 +1,104 @@
-/* ===============================
-   GLOBAL RESET / BASE
-   =============================== */
+/* =========================================
+   GLOBAL RESET
+   ========================================= */
 
 * {
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   background: #000;
-  color: #eaeaea;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  color: #fff;
+  font-family: "Courier New", Courier, monospace;
+  overflow-x: hidden; /* prevent page sliding */
 }
 
-/* ===============================
+/* =========================================
    LAYOUT
-   =============================== */
+   ========================================= */
 
-.wrap {
+main.wrap {
   display: flex;
   justify-content: center;
+  align-items: flex-start;
   width: 100%;
+  padding: 2ch 1ch;
 }
 
 .center {
   display: flex;
   justify-content: center;
-  width: 100%;
+  align-items: center;
 }
 
-/* ===============================
+/* =========================================
    TERMINAL / ASCII
-   =============================== */
+   ========================================= */
 
 .term {
+  width: max-content;
+  min-width: 100%;
   white-space: pre;
-  text-align: left;
+  overflow-x: auto; /* ONLY place horizontal scroll exists */
+  overflow-y: hidden;
+
+  -webkit-overflow-scrolling: touch;
+
   margin: 0 auto;
-  padding: 2ch;
-  max-width: max-content;
+  padding-left: 1ch;
+  padding-right: 1ch;
 }
 
-/* ===============================
-   TEXT STYLES
-   =============================== */
+/* =========================================
+   TYPOGRAPHY
+   ========================================= */
+
+p,
+span {
+  line-height: 1.45;
+}
 
 .muted {
   opacity: 0.7;
 }
 
-/* ===============================
-   LINKS — FORCE WHITE
-   =============================== */
+/* =========================================
+   LINKS — FORCE WHITE (NO PURPLE / BLUE)
+   ========================================= */
 
 a,
 a:visited,
 a:hover,
 a:active {
-  color: #ffffff;
-  text-decoration: none;
-}
-
-a:hover {
+  color: #fff;
   text-decoration: underline;
 }
 
-/* ===============================
-   MOBILE — SAFE, NO SIDE SCROLL
-   =============================== */
+/* =========================================
+   MOBILE SAFETY (NO LAYOUT SHIFT)
+   ========================================= */
 
 @media (max-width: 768px) {
-  body {
-    overflow-x: hidden;
+  main.wrap {
+    justify-content: flex-start;
   }
 
-  .term {
-    padding: 1.5ch;
+  .center {
+    justify-content: flex-start;
+    align-items: flex-start;
   }
+}
+
+/* =========================================
+   HARD REVERT — REMOVE SWIPE COMPLETELY
+   ========================================= */
+
+.swipe-hint {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
 }
