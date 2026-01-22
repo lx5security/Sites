@@ -1,9 +1,8 @@
 /* =========================================
-   LX5 GLOBAL RESET & TYPOGRAPHY FIX
-   Safe to paste as-is
+   LX5 GLOBAL RESET & TYPOGRAPHY (LOCKED)
    ========================================= */
 
-/* Prevent mobile horizontal drift */
+/* Prevent horizontal drift */
 html, body {
   width: 100%;
   margin: 0;
@@ -25,29 +24,48 @@ body {
   line-height: 1.6;
 }
 
-/* Links */
+/* =========================================
+   LINKS
+   ========================================= */
+
 a {
   color: #e6e6e6;
   text-decoration: none;
 }
 
-a:hover {
-  text-decoration: underline;
+/* Desktop hover behavior */
+@media (min-width: 769px) {
+  a:hover {
+    text-decoration: underline;
+  }
 }
 
-/* Headings (keep terminal feel, not oversized) */
+/* Mobile: always show underline so links are obvious */
+@media (max-width: 768px) {
+  a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+}
+
+/* =========================================
+   HEADINGS & TEXT
+   ========================================= */
+
 h1, h2, h3, h4, h5, h6 {
   font-weight: 400;
   margin: 0 0 1rem 0;
   line-height: 1.4;
 }
 
-/* Paragraphs */
 p {
   margin: 0 0 1.2rem 0;
 }
 
-/* Preformatted / ASCII blocks */
+/* =========================================
+   PRE / ASCII / CODE BLOCKS
+   ========================================= */
+
 pre {
   max-width: 100%;
   overflow-x: auto;
@@ -57,32 +75,33 @@ pre {
   -webkit-overflow-scrolling: touch;
 }
 
-/* Code blocks */
 code {
   font-family: inherit;
   font-size: 0.9em;
 }
 
-/* Horizontal rules */
+/* =========================================
+   DIVIDERS & LISTS
+   ========================================= */
+
 hr {
   border: none;
   border-top: 1px solid #333;
   margin: 1.5rem 0;
 }
 
-/* Lists */
 ul, ol {
   padding-left: 1.2rem;
   margin: 0 0 1.2rem 0;
 }
 
 /* =========================================
-   MOBILE OPTIMIZATION
+   MOBILE TYPOGRAPHY (PERFECT — DO NOT TOUCH)
    ========================================= */
 
 @media (max-width: 768px) {
   html {
-    font-size: 13px; /* Mobile scale */
+    font-size: 13px; /* Mobile scale — LOCKED */
   }
 
   body {
@@ -92,13 +111,34 @@ ul, ol {
   pre, code {
     font-size: 0.85em;
   }
+
+  /* REMOVE swipe hint on mobile */
+  .swipe-hint {
+    display: none !important;
+  }
 }
 
 /* =========================================
-   SAFETY NET (prevents rogue width elements)
+   DESKTOP CENTERING FIX
+   ========================================= */
+
+@media (min-width: 769px) {
+  body {
+    display: flex;
+    justify-content: center;
+  }
+
+  main, .container, .wrap, .content {
+    width: 100%;
+    max-width: 900px;
+  }
+}
+
+/* =========================================
+   SAFETY NET
    ========================================= */
 
 * {
-  max-width: 100%;
   box-sizing: border-box;
+  max-width: 100%;
 }
