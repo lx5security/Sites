@@ -1,138 +1,77 @@
 /* =========================
-   Base reset / terminal look
+   LX5 — FINAL CSS REVERT
+   Goal:
+   - Remove swipe hint
+   - Stop the page from "sliding all over"
+   - Keep ASCII art intact
+   - Desktop stays the same
    ========================= */
 
-* {
-  box-sizing: border-box;
-}
+/* --- Base reset / safety --- */
+* { box-sizing: border-box; }
 
-html,
-body {
+html, body {
   margin: 0;
   padding: 0;
   background: #000;
-  color: #e6e6e6;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
-  font-size: 14px;
-  line-height: 1.35;
+  color: #eaeaea;
 }
 
-/* =========================
-   Layout
-   ========================= */
-
+/* If you already have these in your file, keep your originals.
+   This just avoids layout weirdness. */
 .wrap {
   display: flex;
-  width: 100%;
+  min-height: 100vh;
 }
 
+/* Your layout uses: <main class="wrap center"> */
 .center {
   justify-content: center;
   align-items: center;
 }
 
-.wrap.center {
-  justify-content: center;
-  align-items: center;
-}
-
-/* =========================
-   Terminal container
-   ========================= */
-
+/* The "terminal" (your <pre class="term">) */
 .term {
+  /* keep terminal feeling stable */
   white-space: pre;
-  width: max-content;
-  min-width: 100vw;
-  overflow-x: auto;
-  overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
-
-  margin: 0;
-  padding-left: 1ch;
-  padding-right: 1ch;
 }
 
-/* =========================
-   Text utilities
-   ========================= */
-
-.muted {
-  opacity: 0.55;
-}
-
-a {
-  color: #e6e6e6;
-  text-decoration: underline;
-}
-
-a:hover {
-  opacity: 0.75;
-}
-
-/* =========================
-   Swipe hint (default hidden)
-   ========================= */
-
+/* ===== IMPORTANT: Remove the swipe hint everywhere ===== */
 .swipe-hint {
-  display: none;
-  margin-top: 1ch;
-  opacity: 0.45;
-  font-size: 0.9em;
-  white-space: nowrap;
-  user-select: none;
+  display: none !important;
 }
 
-/* =========================================================
-   MOBILE ONLY — FIXED (NO PAGE DRIFT)
-   ========================================================= */
-
+/* =========================
+   MOBILE ONLY FIX (<= 768px)
+   Keep ASCII intact, but prevent page drift:
+   - Lock the PAGE (body) from horizontal sliding
+   - Allow the PRE (terminal) to scroll horizontally
+   ========================= */
 @media (max-width: 768px) {
-
-  /* 🚫 STOP the entire page from sliding */
-  body {
+  /* Lock the whole page from drifting left/right */
+  html, body {
     overflow-x: hidden;
   }
 
-  /* Start content from left on mobile */
-  .center {
-    justify-content: flex-start !important;
-    align-items: flex-start !important;
-  }
-
+  /* Anchor layout to the left so it doesn't float weird */
+  .center,
   .wrap.center {
     justify-content: flex-start !important;
     align-items: flex-start !important;
   }
 
-  /* ✅ ONLY the terminal scrolls horizontally */
+  /* Let ONLY the terminal scroll horizontally */
   .term {
-    width: max-content;
-    max-width: 100vw;
+    width: 100%;
     overflow-x: auto;
     overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
-    overscroll-behavior-x: contain;
 
-    margin: 0 !important;
+    /* padding so text isn't glued to the edge */
     padding-left: 1ch;
     padding-right: 1ch;
+
+    /* ensures no weird centering margins */
+    margin: 0 !important;
   }
-
-  /* Show swipe hint on mobile only */
-  .swipe-hint {
-    display: block;
-  }
-}
-
-/* =========================
-   Hide scrollbars visually
-   ========================= */
-
-.term::-webkit-scrollbar {
-  height: 0;
-}
-
-.term {
-  scrollbar-width: none; /* Firefox */
 }
