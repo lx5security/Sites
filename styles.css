@@ -75,45 +75,24 @@ button {
   cursor: pointer;
   padding: 0 0.5ch;
 }
- /* ===== Mobile safety fix (do NOT change ASCII layout) ===== */
-@media (max-width: 768px) {
 
-  /* Allow horizontal scroll instead of cutting content off */
-  body {
-    overflow-x: auto;
-  }
-
-  /* Force layout to start from the left on mobile */
-  .center {
-    justify-content: flex-start !important;
-    align-items: flex-start !important;
-  }
-
-  .wrap.center {
-    justify-content: flex-start !important;
-    align-items: flex-start !important;
-  }
-
-  /* Keep ASCII intact + scrollable horizontally */
-  .term {
-    width: max-content;
-    min-width: 100vw;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    margin: 0 !important;
-    padding-left: 1ch;
-    padding-right: 1ch;
-  }
+/* ===== Swipe hint (hidden by default) ===== */
+.swipe-hint {
+  display: none;
+  margin-top: 1ch;
+  opacity: 0.6;
+  font-size: 0.9em;
 }
-/* ===== Mobile safety fix (do NOT change ASCII layout) ===== */
+
+/* ===== MOBILE SAFETY FIX (ASCII SAFE) ===== */
 @media (max-width: 768px) {
 
-  /* Allow horizontal scroll instead of cutting content off */
+  /* Allow horizontal scroll instead of clipping */
   body {
     overflow-x: auto;
   }
 
-  /* Force layout to start from the left on mobile */
+  /* Force layout to start from left on mobile */
   .center {
     justify-content: flex-start !important;
     align-items: flex-start !important;
@@ -124,7 +103,7 @@ button {
     align-items: flex-start !important;
   }
 
-  /* Keep ASCII intact + scrollable horizontally */
+  /* Keep ASCII intact + swipeable */
   .term {
     width: max-content;
     min-width: 100vw;
@@ -133,5 +112,10 @@ button {
     margin: 0 !important;
     padding-left: 1ch;
     padding-right: 1ch;
+  }
+
+  /* Show swipe hint only on mobile */
+  .swipe-hint {
+    display: block;
   }
 }
