@@ -1,98 +1,113 @@
-/* ===== GLOBAL ===== */
+/* =========================
+   Base reset / terminal look
+   ========================= */
+
 * {
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   background: #000;
-  color: #cecece;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  color: #e6e6e6;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  font-size: 14px;
+  line-height: 1.35;
 }
 
-/* ===== CENTERING ===== */
+/* =========================
+   Layout
+   ========================= */
+
 .wrap {
-  min-height: 100vh;
   display: flex;
-  align-items: center;
+  width: 100%;
+}
+
+.center {
   justify-content: center;
+  align-items: center;
 }
 
-.wrap.top {
-  align-items: flex-start;
-  padding-top: 3rem;
+.wrap.center {
+  justify-content: center;
+  align-items: center;
 }
 
-/* ===== TERMINAL ===== */
+/* =========================
+   Terminal container
+   ========================= */
+
 .term {
   white-space: pre;
-  font-size: 15px;
-  line-height: 1.45;
-  max-width: 90ch;
+  width: max-content;
+  min-width: 100vw;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+
+  margin: 0;
+  padding-left: 1ch;
+  padding-right: 1ch;
 }
 
-/* ===== LINKS ===== */
+/* =========================
+   Text utilities
+   ========================= */
+
+.muted {
+  opacity: 0.55;
+}
+
 a {
-  color: #dedede;
+  color: #e6e6e6;
   text-decoration: underline;
 }
 
 a:hover {
-  color: #a1a1a1;
+  opacity: 0.75;
 }
 
-/* ===== MUTED TEXT ===== */
-.muted {
-  color: #3a3a3a;
-}
-
-/* ===== PLAYER ===== */
-.player {
-  color: #8aff8a;
-}
-
-.bar {
-  display: inline-block;
-  width: 34ch;
-  height: 1ch;
-  border: 1px solid #7CFF7C;
-  vertical-align: middle;
-}
-
-.bar-fill {
-  display: block;
-  height: 100%;
-  width: 0%;
-  background: #7CFF7C;
-}
+/* =========================
+   Buttons (if any)
+   ========================= */
 
 button {
   background: transparent;
   border: 1px solid #cecece;
-  color: #7CFF7C;
+  color: #7cff7c;
   font-family: inherit;
   cursor: pointer;
   padding: 0 0.5ch;
 }
 
-/* ===== Swipe hint (hidden by default) ===== */
+/* =========================
+   Swipe hint (terminal-safe)
+   ========================= */
+
 .swipe-hint {
   display: none;
   margin-top: 1ch;
-  opacity: 0.6;
+  opacity: 0.45;
   font-size: 0.9em;
+  white-space: nowrap;
+  user-select: none;
 }
 
-/* ===== MOBILE SAFETY FIX (ASCII SAFE) ===== */
+/* =========================
+   MOBILE ONLY
+   ========================= */
+
 @media (max-width: 768px) {
 
-  /* Allow horizontal scroll instead of clipping */
+  /* Allow horizontal scroll instead of cutting content */
   body {
     overflow-x: auto;
   }
 
-  /* Force layout to start from left on mobile */
+  /* Start content from left on mobile (no forced centering) */
   .center {
     justify-content: flex-start !important;
     align-items: flex-start !important;
@@ -103,7 +118,7 @@ button {
     align-items: flex-start !important;
   }
 
-  /* Keep ASCII intact + swipeable */
+  /* Keep ASCII intact + scrollable */
   .term {
     width: max-content;
     min-width: 100vw;
@@ -114,8 +129,21 @@ button {
     padding-right: 1ch;
   }
 
-  /* Show swipe hint only on mobile */
+  /* Show swipe hint ONLY on mobile */
   .swipe-hint {
     display: block;
   }
+}
+
+/* =========================
+   OPTIONAL polish (safe)
+   ========================= */
+
+/* Hide scrollbars visually but keep swipe */
+.term::-webkit-scrollbar {
+  height: 0;
+}
+
+.term {
+  scrollbar-width: none; /* Firefox */
 }
