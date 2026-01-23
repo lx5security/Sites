@@ -42,6 +42,7 @@ body {
    MAIN WRAPPER — CENTER EVERYTHING TOGETHER
    ========================================= */
 
+main.wrap,
 main.wrap.center {
   display: flex;
   flex-direction: column;
@@ -51,6 +52,7 @@ main.wrap.center {
   width: 100%;
   text-align: center;
 }
+
 
 /* Mobile: scale the ENTIRE block (safe) */
 @media (max-width: 768px) {
