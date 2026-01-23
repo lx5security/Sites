@@ -22,7 +22,10 @@ html {
   }
 }
 
-/* Body */
+/* =========================================
+   BODY — CENTER PAGE AS A WHOLE
+   ========================================= */
+
 body {
   background: #000;
   color: #e6e6e6;
@@ -36,7 +39,7 @@ body {
 }
 
 /* =========================================
-   MAIN WRAPPER — CENTER EVERYTHING AS ONE
+   MAIN WRAPPER — CENTER EVERYTHING TOGETHER
    ========================================= */
 
 main.wrap.center {
@@ -49,7 +52,7 @@ main.wrap.center {
   text-align: center;
 }
 
-/* Mobile: scale the WHOLE block (not the art alone) */
+/* Mobile: scale the ENTIRE block (safe) */
 @media (max-width: 768px) {
   main.wrap.center {
     transform: scale(0.92);
@@ -68,6 +71,7 @@ pre.term {
 
   white-space: pre;
   overflow-x: auto;
+
   font-size: 0.9em;
   line-height: 1.4;
 
@@ -75,9 +79,15 @@ pre.term {
   -webkit-overflow-scrolling: touch;
 }
 
-/* Muted text */
-.muted {
-  color: #9a9a9a;
+/* =========================================
+   CENTER NON-ASCII CONTENT UNDER ART
+   ========================================= */
+
+pre.term .links,
+pre.term .footer {
+  display: block;
+  text-align: center;
+  margin: 0 auto;
 }
 
 /* =========================================
@@ -103,7 +113,15 @@ a {
 }
 
 /* =========================================
-   SWIPE HINT — REMOVED ON MOBILE
+   MUTED TEXT
+   ========================================= */
+
+.muted {
+  color: #9a9a9a;
+}
+
+/* =========================================
+   SWIPE HINT — HIDDEN ON MOBILE
    ========================================= */
 
 @media (max-width: 768px) {
